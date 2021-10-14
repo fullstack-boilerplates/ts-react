@@ -25,3 +25,9 @@ production | 产线
 npm run build
 npm run start
 ```
+
+docker-compose
+
+```
+docker-compose up -d
+```
