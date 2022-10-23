@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { render } from "react-dom"
+import { createRoot } from "react-dom/client"
 import { hello } from "../apis/hello"
 
 const Index = () => {
@@ -10,6 +10,7 @@ const Index = () => {
   return <div>{msg}</div>
 }
 
-render(<Index />, document.getElementById('react-root'))
+createRoot(document.getElementById('react-root')).render(<Index />)
+
 
 
