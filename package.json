@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "node --loader ts-node/esm node_modules/@shack-js/cli/src/index.mjs dev -e .ts",
     "build": "shack build && tsc",
-    "start": "shack start -e .js -s ./dist/web -a ./dist/tsc/apis"
+    "start": "shack start -e .js -s ./dist/web -a ./dist/tsc/apis",
+    "cli": "node --loader ts-node/esm commands/index.ts"
   },
   "keywords": [],
   "author": "",
