@@ -8,8 +8,16 @@ export default {
   module: {
     rules: [
       {
+        test: /\.css$/i,
+        use: ["style-loader", "css-loader"],
+      },
+      {
+        test: /\.(jpe?g|png|gif|woff|woff2|eot|ttf|svg)$/i,
+        type: 'asset/resource',
+      },
+      {
         test: /\.(m|c)?(t|j)sx?$/,
-        exclude: /(node_modules|bower_components)/,
+        exclude: /(node_modules|bower_components).*(?<!shack-get-routes\.js)$/,
         use: {
           loader: 'babel-loader',
           options: {
@@ -21,6 +29,15 @@ export default {
             plugins: [
               "@babel/plugin-transform-runtime",
             ]
+          }
+        }
+      },
+      {
+        test: /shack-get-routes\.js$/,
+        use: {
+          loader: '@shack-js/auto-routes-loader',
+          options: {
+            folder: 'web/pages'
           }
         }
       },
@@ -40,11 +57,15 @@ export default {
   ],
   output: {
     path: join(dirname(fileURLToPath(import.meta.url)), 'dist', 'web'),
-    filename: '[contenthash].js'
+    filename: '[contenthash].js',
+    publicPath: '/'
   },
   optimization: {
     splitChunks: {
       chunks: 'all',
     },
   },
+  devServer: {
+    historyApiFallback: true
+  }
 }
